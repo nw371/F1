@@ -1,21 +1,42 @@
 import * as React from "react";
+import { useState } from "react";
 import axios from "axios";
 
-import "../styles/Weather.css"
+import "../styles/Weather.css";
 
 function Weather() {
 
-    const datasource = 'https://api.openweathermap.org/data/2.5/onecall?lat=51.94&lon=-0.28&appid=31e877ff7e17bb13e6d7c38793c25800'
+    const [weather, setWeather] = useState([]);
 
-    axios.get(datasource).then(weatherdata => {
-        console.log(weatherdata);
-    });
+    const datasource = "https://api.openweathermap.org/data/2.5/onecall?lat=51.94&lon=-0.28&units=metric&appid=facc6382ca0205a6bcd01e2a70b19e89"
 
+    if(!weather.length) {
+      axios.get(datasource).then( wdata => {
+          console.log(wdata);
+          setWeather(wdata.data);
+      });
+    }
     return (
-
-      <h1>Weather data</h1>
-
-    );
+        <table>
+            <thead>
+                <tr>
+                    <th><h1>Weather data</h1></th>
+                </tr>
+                <tr>
+                    <th>Minute</th>
+                    <th>Hour</th>
+                    <th>Day</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+      );
 
 }
 
