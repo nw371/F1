@@ -29,11 +29,13 @@ function Weather() {
                 </tr>
             </thead>
             <tbody>
+            {weather.map(temperature =>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{temperature.current.temp}</td>
+                <td>{temperature.hourly.temp}</td>
+                <td>{temperature.daily.temp}</td>
               </tr>
+                     )}
             </tbody>
         </table>
       );
